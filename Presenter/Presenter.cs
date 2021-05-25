@@ -23,6 +23,14 @@ namespace SP_Dyagilev
             view.AddToDB += AddToDB;
 
             view.EditInDB += EditInDB;
+
+            view.RemFromDB += Rem;
+
+            view.SaveFile += SaveFile;
+
+            view.RemFile += RemElem;
+
+            view.EditFile += EditElem;
         }
 
 
@@ -56,6 +64,13 @@ namespace SP_Dyagilev
                 OpenDB();
 
          
+        }
+
+        public void Rem() {
+            if (!model.DeleteNode(view.CurrentItemInDB))
+                throw new Exception("Элементт не был удалён из БД "); //FileName
+            view.LogBox = "Элемент успешно удалён из БД";
+            OpenDB();
         }
 
 
@@ -132,6 +147,58 @@ namespace SP_Dyagilev
                     throw new Exception("Элемент не был добавлен");
                 view.DataList = model.DataList;
                 view.LogBox = "Элемент успешно добавлен";
+            }
+            catch (Exception ex)
+            {
+                view.LogBox = "Произошла ошибка: " + ex.Message;
+            }
+        }
+
+        public void RemElem() {
+
+            try
+            {
+                if (!model.RemElem(view.CurrentElemXML))
+                    throw new Exception("Элемент не был добавлен");
+                view.DataList = model.DataList;
+                view.LogBox = "Элемент успешно добавлен";
+            }
+            catch (Exception ex)
+            {
+                view.LogBox = "Произошла ошибка: " + ex.Message;
+            }
+
+        }
+
+        public void EditElem()
+        {
+            try
+            {
+
+                if (!model.EditElem(view.CurrentElemXML))
+                    throw new Exception("Элемент не был отредактирован");
+                view.DataList = model.DataList;
+                view.LogBox = "Элемент успешно отредактирован";
+            }
+            catch (Exception ex)
+            {
+                view.LogBox = "Произошла ошибка: " + ex.Message;
+            }
+        }
+
+        public void SaveFile()
+        {
+            try
+            {
+                if (model.PathFile != null)
+                {
+                    model.SaveFile(model.DataList);
+                    view.LogBox = "Файл успешно сохранён";
+                }
+                else
+                {
+                    view.LogBox = "Файл не открыт";
+                }
             }
             catch (Exception ex)
             {

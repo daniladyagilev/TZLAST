@@ -20,9 +20,18 @@ namespace SP_Dyagilev
 
         bool AddElem();
 
+        bool RemElem(int index);
+
+        bool EditElem(int index);
+
         List DataList { get; set; }
 
-        bool EditNode(string index);
+        bool EditNode(Guid index);
+
+        bool DeleteNode(Guid id);
+
+        void SaveFile(List data);
+
 
 
     }

@@ -71,10 +71,12 @@ namespace SP_Dyagilev
             dataList = f;
             return f;
         }
-        public void SaveFileA(List data)
+        public void SaveFile(List data)
         {
             file.SaveFile(data);
         }
+
+
         public bool SaveFileAsA(List data)
         {
             if (file.SaveFileAs(data))
@@ -86,9 +88,26 @@ namespace SP_Dyagilev
         }
         public bool AddElem()
         {
-            //добавить
+            var tmpNode = new AddFileForm("AddToXML");
+            if (tmpNode != null && dataList != null)
+            {
+                dataList.AddElement(tmpNode.FileName, tmpNode.FileVersion, tmpNode.LastChangeDate);
+                return true;
+            }
             return false;
         }
+
+        public bool RemElem(int index)
+        {
+            if (dataList != null)
+            {
+                dataList.DeleteElementAt(index);
+                return true;
+            }
+            return false;
+        }
+
+
         public bool DeleteElem(int index)
         {
             if (dataList != null)
@@ -98,8 +117,15 @@ namespace SP_Dyagilev
             }
             return false;
         }
-        public bool EditElem(string index)
+        public bool EditElem(int index)
         {
+            var tmpElem = dataList.GetElementAt(index);
+            var tmpNode = new AddFileForm("AddToXML");
+            if (tmpNode != null && dataList != null)
+            {
+                dataList.SetElementAt(index, tmpNode.FileName, tmpNode.FileVersion, tmpNode.LastChangeDate);
+                return true;
+            }
             
             return false;
         }
@@ -120,7 +146,6 @@ namespace SP_Dyagilev
 
             Node node = new Node
             {
-               // Id = addFileForm.
                 FileName = addFileForm.FileName,
                 FileVersion = addFileForm.FileVersion,
                 LastChangeDate = addFileForm.LastChangeDate
@@ -133,19 +158,24 @@ namespace SP_Dyagilev
             }
             return false;
         }
-        public void DeleteNode(long id)
+        public bool DeleteNode(Guid id)
         {
-
             
-            AddFileForm addFileForm = new AddFileForm("Edit");
+            if (id != null)
+            {
+                iDBModel.DeleteNode(id);
+                return true;
+            }
+            return false;
         }
-        public bool EditNode(string fileName)
+        public bool EditNode(Guid id)
         {
-            var node = iDBModel.GetNode(fileName);
+            var node = iDBModel.GetNode(id);
             AddFileForm addFileForm = new AddFileForm("Edit");
 
             Node newnode = new Node
             {
+                Id = id,
                 FileName = addFileForm.FileName,
                 FileVersion = addFileForm.FileVersion,
                 LastChangeDate = addFileForm.LastChangeDate
@@ -153,7 +183,7 @@ namespace SP_Dyagilev
 
             if (node != null)
             {
-                iDBModel.UpdateNode(fileName, newnode);
+                iDBModel.UpdateNode(newnode);
                 return true;
             }
             return false;

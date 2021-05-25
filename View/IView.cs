@@ -16,6 +16,16 @@ namespace SP_Dyagilev
         public event Action AddToDB;
 
         public event Action EditInDB;
+
+        public event Action RemFromDB;
+
+        public event Action SaveFile;
+
+        public event Action RemFile;
+
+        public event Action EditFile;
+
+
         int A { get; }
         int B { get; }
         List<Node> DataListDB { set; }
@@ -30,7 +40,11 @@ namespace SP_Dyagilev
 
         string NativeResult { set; }
 
-        string CurrentItemInDB { get; }
+        Guid CurrentItemInDB { get; }
+
+        int CurrentElemXML { get; }
+
+
 
     }
 }

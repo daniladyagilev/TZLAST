@@ -24,7 +24,7 @@ namespace SP_Dyagilev
             {
                 dataGridView1.Rows.Clear();
                 foreach (var el in value)
-                    dataGridView1.Rows.Add(el.FileName, el.FileVersion, el.LastChangeDate);
+                    dataGridView1.Rows.Add(el.Id, el.FileName, el.FileVersion, el.LastChangeDate);
             }
         }
         public string[] AnalyzerCode { get { return richTextBoxCode.Lines; } }
@@ -75,18 +75,25 @@ namespace SP_Dyagilev
 
         public string NativeResult { set { labelNativeResult.Text = value.ToString(); } }
 
-        public long CurrentItemInDB
+        public Guid CurrentItemInDB
         {
             get
             {
                 if (dataGridView1.CurrentCell == null)
                    throw new Exception("Выберите запись в таблице!");
-                return long.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                return Guid.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString());
                 
             }
         }
-
-        string IView.CurrentItemInDB => throw new NotImplementedException();
+        public int CurrentElemXML
+        {
+            get
+            {
+                if (dataGridViewFiles.CurrentCell == null)
+                    throw new Exception("Выберите запись в таблице!");
+                return dataGridViewFiles.CurrentCell.RowIndex;
+            }
+        }
 
         public event Action OpenDB;
         public event Action Analyze;
@@ -97,6 +104,14 @@ namespace SP_Dyagilev
         public event Action AddToDB;
 
         public event Action EditInDB;
+
+        public event Action RemFromDB;
+
+        public event Action SaveFile;
+
+        public event Action RemFile;
+
+        public event Action EditFile;
 
         public void analyzerInit() {
             labelTask.Text = "Цикл-перебор\nforeach\r\n(< элемент > in < массив >) {< Тело цикла >}\r\nПосчитать, сколько раз выполнится цикл.";
@@ -144,6 +159,31 @@ namespace SP_Dyagilev
         private void button4_Click(object sender, EventArgs e)
         {
             EditInDB?.Invoke();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RemFromDB?.Invoke();
+        }
+
+        private void buttonSaveFile_Click(object sender, EventArgs e)
+        {
+            SaveFile?.Invoke();
+        }
+
+        private void buttonDeleteFile_Click(object sender, EventArgs e)
+        {
+            RemFile?.Invoke();
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEditFile_Click(object sender, EventArgs e)
+        {
+            EditFile?.Invoke();
         }
     }
 }

@@ -31,6 +31,7 @@ namespace SP_Dyagilev
         {
             this.buttonOpenDB = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Version = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastEditDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,14 +47,16 @@ namespace SP_Dyagilev
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.richTextBoxCode = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.labelPathFile = new System.Windows.Forms.Label();
-            this.buttonEditFile = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.buttonDeleteFile = new System.Windows.Forms.Button();
             this.buttonAddFile = new System.Windows.Forms.Button();
-            this.buttonSaveFileAs = new System.Windows.Forms.Button();
-            this.buttonSaveFile = new System.Windows.Forms.Button();
+            this.buttonEditFile = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.buttonCreateFile = new System.Windows.Forms.Button();
+            this.buttonSaveFile = new System.Windows.Forms.Button();
+            this.buttonSaveFileAs = new System.Windows.Forms.Button();
+            this.labelPathFile = new System.Windows.Forms.Label();
             this.dataGridViewFiles = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,19 +67,23 @@ namespace SP_Dyagilev
             this.textBoxB = new System.Windows.Forms.TextBox();
             this.textBoxA = new System.Windows.Forms.TextBox();
             this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOpenDB
             // 
-            this.buttonOpenDB.Location = new System.Drawing.Point(521, 28);
+            this.buttonOpenDB.Location = new System.Drawing.Point(904, 38);
             this.buttonOpenDB.Name = "buttonOpenDB";
             this.buttonOpenDB.Size = new System.Drawing.Size(94, 29);
             this.buttonOpenDB.TabIndex = 0;
@@ -88,6 +95,7 @@ namespace SP_Dyagilev
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.Filename,
             this.Version,
             this.LastEditDate});
@@ -95,8 +103,15 @@ namespace SP_Dyagilev
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(429, 466);
+            this.dataGridView1.Size = new System.Drawing.Size(550, 466);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.Width = 125;
             // 
             // Filename
             // 
@@ -149,7 +164,7 @@ namespace SP_Dyagilev
             this.groupBox1.Controls.Add(this.buttonAddItemToDB);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Location = new System.Drawing.Point(521, 88);
+            this.groupBox1.Location = new System.Drawing.Point(904, 98);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(109, 133);
             this.groupBox1.TabIndex = 4;
@@ -184,6 +199,7 @@ namespace SP_Dyagilev
             this.button3.TabIndex = 2;
             this.button3.Text = "Remove";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // tabPage2
             // 
@@ -239,14 +255,9 @@ namespace SP_Dyagilev
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.labelPathFile);
-            this.tabPage3.Controls.Add(this.buttonEditFile);
-            this.tabPage3.Controls.Add(this.buttonDeleteFile);
-            this.tabPage3.Controls.Add(this.buttonAddFile);
-            this.tabPage3.Controls.Add(this.buttonSaveFileAs);
-            this.tabPage3.Controls.Add(this.buttonSaveFile);
-            this.tabPage3.Controls.Add(this.buttonOpenFile);
-            this.tabPage3.Controls.Add(this.buttonCreateFile);
             this.tabPage3.Controls.Add(this.dataGridViewFiles);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
@@ -256,64 +267,65 @@ namespace SP_Dyagilev
             this.tabPage3.Text = "Files";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // labelPathFile
+            // groupBox3
             // 
-            this.labelPathFile.AutoSize = true;
-            this.labelPathFile.Location = new System.Drawing.Point(567, 339);
-            this.labelPathFile.Name = "labelPathFile";
-            this.labelPathFile.Size = new System.Drawing.Size(50, 20);
-            this.labelPathFile.TabIndex = 14;
-            this.labelPathFile.Text = "label1";
-            // 
-            // buttonEditFile
-            // 
-            this.buttonEditFile.Location = new System.Drawing.Point(567, 280);
-            this.buttonEditFile.Name = "buttonEditFile";
-            this.buttonEditFile.Size = new System.Drawing.Size(94, 29);
-            this.buttonEditFile.TabIndex = 13;
-            this.buttonEditFile.Text = "Edit file";
-            this.buttonEditFile.UseVisualStyleBackColor = true;
+            this.groupBox3.Controls.Add(this.buttonDeleteFile);
+            this.groupBox3.Controls.Add(this.buttonAddFile);
+            this.groupBox3.Controls.Add(this.buttonEditFile);
+            this.groupBox3.Location = new System.Drawing.Point(527, 172);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(127, 132);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "DLL";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // buttonDeleteFile
             // 
-            this.buttonDeleteFile.Location = new System.Drawing.Point(567, 245);
+            this.buttonDeleteFile.Location = new System.Drawing.Point(6, 55);
             this.buttonDeleteFile.Name = "buttonDeleteFile";
-            this.buttonDeleteFile.Size = new System.Drawing.Size(94, 29);
+            this.buttonDeleteFile.Size = new System.Drawing.Size(114, 29);
             this.buttonDeleteFile.TabIndex = 12;
-            this.buttonDeleteFile.Text = "Delete file";
+            this.buttonDeleteFile.Text = "Delete item";
             this.buttonDeleteFile.UseVisualStyleBackColor = true;
+            this.buttonDeleteFile.Click += new System.EventHandler(this.buttonDeleteFile_Click);
             // 
             // buttonAddFile
             // 
-            this.buttonAddFile.Location = new System.Drawing.Point(567, 210);
+            this.buttonAddFile.Location = new System.Drawing.Point(6, 20);
             this.buttonAddFile.Name = "buttonAddFile";
-            this.buttonAddFile.Size = new System.Drawing.Size(94, 29);
+            this.buttonAddFile.Size = new System.Drawing.Size(114, 29);
             this.buttonAddFile.TabIndex = 11;
-            this.buttonAddFile.Text = "Add file";
+            this.buttonAddFile.Text = "Add item";
             this.buttonAddFile.UseVisualStyleBackColor = true;
             this.buttonAddFile.Click += new System.EventHandler(this.buttonAddFile_Click);
             // 
-            // buttonSaveFileAs
+            // buttonEditFile
             // 
-            this.buttonSaveFileAs.Location = new System.Drawing.Point(567, 143);
-            this.buttonSaveFileAs.Name = "buttonSaveFileAs";
-            this.buttonSaveFileAs.Size = new System.Drawing.Size(94, 29);
-            this.buttonSaveFileAs.TabIndex = 10;
-            this.buttonSaveFileAs.Text = "Save file as";
-            this.buttonSaveFileAs.UseVisualStyleBackColor = true;
+            this.buttonEditFile.Location = new System.Drawing.Point(6, 90);
+            this.buttonEditFile.Name = "buttonEditFile";
+            this.buttonEditFile.Size = new System.Drawing.Size(114, 29);
+            this.buttonEditFile.TabIndex = 13;
+            this.buttonEditFile.Text = "Edit item";
+            this.buttonEditFile.UseVisualStyleBackColor = true;
+            this.buttonEditFile.Click += new System.EventHandler(this.buttonEditFile_Click);
             // 
-            // buttonSaveFile
+            // groupBox2
             // 
-            this.buttonSaveFile.Location = new System.Drawing.Point(567, 108);
-            this.buttonSaveFile.Name = "buttonSaveFile";
-            this.buttonSaveFile.Size = new System.Drawing.Size(94, 29);
-            this.buttonSaveFile.TabIndex = 9;
-            this.buttonSaveFile.Text = "Save file";
-            this.buttonSaveFile.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.buttonOpenFile);
+            this.groupBox2.Controls.Add(this.buttonCreateFile);
+            this.groupBox2.Controls.Add(this.buttonSaveFile);
+            this.groupBox2.Controls.Add(this.buttonSaveFileAs);
+            this.groupBox2.Location = new System.Drawing.Point(527, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(107, 163);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "XML";
             // 
             // buttonOpenFile
             // 
-            this.buttonOpenFile.Location = new System.Drawing.Point(567, 73);
+            this.buttonOpenFile.Location = new System.Drawing.Point(6, 57);
             this.buttonOpenFile.Name = "buttonOpenFile";
             this.buttonOpenFile.Size = new System.Drawing.Size(94, 29);
             this.buttonOpenFile.TabIndex = 8;
@@ -323,13 +335,41 @@ namespace SP_Dyagilev
             // 
             // buttonCreateFile
             // 
-            this.buttonCreateFile.Location = new System.Drawing.Point(567, 38);
+            this.buttonCreateFile.Location = new System.Drawing.Point(6, 22);
             this.buttonCreateFile.Name = "buttonCreateFile";
             this.buttonCreateFile.Size = new System.Drawing.Size(94, 29);
             this.buttonCreateFile.TabIndex = 7;
             this.buttonCreateFile.Text = "Create file";
             this.buttonCreateFile.UseVisualStyleBackColor = true;
             this.buttonCreateFile.Click += new System.EventHandler(this.buttonCreateFile_Click);
+            // 
+            // buttonSaveFile
+            // 
+            this.buttonSaveFile.Location = new System.Drawing.Point(6, 92);
+            this.buttonSaveFile.Name = "buttonSaveFile";
+            this.buttonSaveFile.Size = new System.Drawing.Size(94, 29);
+            this.buttonSaveFile.TabIndex = 9;
+            this.buttonSaveFile.Text = "Save file";
+            this.buttonSaveFile.UseVisualStyleBackColor = true;
+            this.buttonSaveFile.Click += new System.EventHandler(this.buttonSaveFile_Click);
+            // 
+            // buttonSaveFileAs
+            // 
+            this.buttonSaveFileAs.Location = new System.Drawing.Point(6, 127);
+            this.buttonSaveFileAs.Name = "buttonSaveFileAs";
+            this.buttonSaveFileAs.Size = new System.Drawing.Size(94, 29);
+            this.buttonSaveFileAs.TabIndex = 10;
+            this.buttonSaveFileAs.Text = "Save file as";
+            this.buttonSaveFileAs.UseVisualStyleBackColor = true;
+            // 
+            // labelPathFile
+            // 
+            this.labelPathFile.AutoSize = true;
+            this.labelPathFile.Location = new System.Drawing.Point(567, 339);
+            this.labelPathFile.Name = "labelPathFile";
+            this.labelPathFile.Size = new System.Drawing.Size(50, 20);
+            this.labelPathFile.TabIndex = 14;
+            this.labelPathFile.Text = "label1";
             // 
             // dataGridViewFiles
             // 
@@ -421,6 +461,25 @@ namespace SP_Dyagilev
             this.richTextBoxLog.TabIndex = 4;
             this.richTextBoxLog.Text = "";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(543, 231);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 29);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Add item";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonAddFile_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(543, 266);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(114, 29);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Delete item";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // HomePageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -438,6 +497,8 @@ namespace SP_Dyagilev
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -449,9 +510,6 @@ namespace SP_Dyagilev
 
         private System.Windows.Forms.Button buttonOpenDB;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Filename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Version;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastEditDate;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -482,5 +540,13 @@ namespace SP_Dyagilev
         private System.Windows.Forms.TextBox textBoxA;
         private System.Windows.Forms.Button buttonNative;
         private System.Windows.Forms.Label labelNativeResult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Filename;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Version;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastEditDate;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -25,6 +25,9 @@ namespace SP_Dyagilev
                 case "Edit":
                     Edit();
                     break;
+                case "AddToXML":
+                    AddToXML();
+                    break;
 
             }
 
@@ -34,7 +37,6 @@ namespace SP_Dyagilev
         public string FileName { get { return textBox1.Text; } set { textBox1.Text = value; } }
         public string FileVersion { get { return textBox2.Text; } set { textBox2.Text = value; } }
         public DateTime LastChangeDate { get { return dateTimePicker1.Value; } set { dateTimePicker1.Value = value; } }
-        //public int Id { get { return ; } set { dateTimePicker1.Value = value; } }
 
 
         public void Add()
@@ -44,7 +46,6 @@ namespace SP_Dyagilev
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                
                 FileName = openFileDialog.SafeFileName;
                 FileVersion = FileVersionInfo.GetVersionInfo(openFileDialog.FileName).FileVersion;
                 LastChangeDate = new FileInfo(openFileDialog.FileName).LastWriteTime;
@@ -67,6 +68,21 @@ namespace SP_Dyagilev
             }
             this.Close();
 
+
+        }
+        public void AddToXML() {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "dll files (*.dll)|*.dll";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                FileName = openFileDialog.SafeFileName;
+                FileVersion = FileVersionInfo.GetVersionInfo(openFileDialog.FileName).FileVersion;
+                LastChangeDate = new FileInfo(openFileDialog.FileName).LastWriteTime;
+
+            }
+            this.Close();
 
         }
     }

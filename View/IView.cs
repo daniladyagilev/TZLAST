@@ -25,6 +25,8 @@ namespace SP_Dyagilev
 
         public event Action EditFile;
 
+        public event Action SaveFileAs;
+
 
         int A { get; }
         int B { get; }

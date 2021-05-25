@@ -361,6 +361,7 @@ namespace SP_Dyagilev
             this.buttonSaveFileAs.TabIndex = 10;
             this.buttonSaveFileAs.Text = "Save file as";
             this.buttonSaveFileAs.UseVisualStyleBackColor = true;
+            this.buttonSaveFileAs.Click += new System.EventHandler(this.buttonSaveFileAs_Click);
             // 
             // labelPathFile
             // 

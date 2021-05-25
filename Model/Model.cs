@@ -77,7 +77,7 @@ namespace SP_Dyagilev
         }
 
 
-        public bool SaveFileAsA(List data)
+        public bool SaveFileAs(List data)
         {
             if (file.SaveFileAs(data))
             {

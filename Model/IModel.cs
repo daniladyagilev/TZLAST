@@ -32,6 +32,7 @@ namespace SP_Dyagilev
 
         void SaveFile(List data);
 
+        bool SaveFileAs(List data);
 
 
     }

@@ -31,6 +31,8 @@ namespace SP_Dyagilev
             view.RemFile += RemElem;
 
             view.EditFile += EditElem;
+
+            view.SaveFileAs += SaveFileAs;
         }
 
 
@@ -174,7 +176,6 @@ namespace SP_Dyagilev
         {
             try
             {
-
                 if (!model.EditElem(view.CurrentElemXML))
                     throw new Exception("Элемент не был отредактирован");
                 view.DataList = model.DataList;
@@ -205,6 +206,31 @@ namespace SP_Dyagilev
                 view.LogBox = "Произошла ошибка: " + ex.Message;
             }
         }
+
+        public void SaveFileAs()
+        {
+            try
+            {
+                if (model.PathFile != null)
+                {
+                    if (!model.SaveFileAs(model.DataList))
+                        throw new Exception("Сохранение отменено");
+                    view.LogBox = "Файл успешно сохранён";
+                    view.PathFile = model.PathFile;
+                }
+                else
+                {
+                    view.LogBox = "Файл не открыт";
+                }
+            }
+            catch (Exception ex)
+            {
+                view.LogBox = "Произошла ошибка: " + ex.Message;
+            }
+
+        }
+
+
 
         public void NativeFunction()
         {

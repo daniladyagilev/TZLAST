@@ -113,6 +113,8 @@ namespace SP_Dyagilev
 
         public event Action EditFile;
 
+        public event Action SaveFileAs;
+
         public void analyzerInit() {
             labelTask.Text = "Цикл-перебор\nforeach\r\n(< элемент > in < массив >) {< Тело цикла >}\r\nПосчитать, сколько раз выполнится цикл.";
             richTextBoxCode.Text = "int[] arr = new int[7];\nforeach(int a in arr)\n{\n    int x = 0;\n    x++;\n}";
@@ -184,6 +186,11 @@ namespace SP_Dyagilev
         private void buttonEditFile_Click(object sender, EventArgs e)
         {
             EditFile?.Invoke();
+        }
+
+        private void buttonSaveFileAs_Click(object sender, EventArgs e)
+        {
+            SaveFileAs?.Invoke();
         }
     }
 }

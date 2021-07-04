@@ -1,7 +1,9 @@
 {
   "profiles": {
-    "SP_Dyagilev": {
-      "commandName": "Project"
+    "tz": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\dyagi\\Desktop\\Ира ТЗ",
+      "sqlDebugging": true
     }
   }
 }

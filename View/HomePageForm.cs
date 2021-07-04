@@ -35,7 +35,7 @@ namespace SP_Dyagilev
                 richTextBoxLog.ScrollToCaret();
             }
         }
-
+        /*
         public List<Stat> DataList
         {
             get
@@ -61,8 +61,10 @@ namespace SP_Dyagilev
             }
             set { ShowDateList(value.First, dataGridView1); }
         }
-
+        */
         public Guid CurrentItemInDB => throw new NotImplementedException();
+
+        public List<Stat> DataList { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private void ShowDateList(Stat node, DataGridView dGv)
         {
@@ -76,9 +78,11 @@ namespace SP_Dyagilev
         }
 
 
+
+
         public event Action OpenDB;
         public event Action Analyze;
-       
+        public event Action GetRequest;
 
 
 

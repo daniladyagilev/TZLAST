@@ -7,7 +7,7 @@ namespace SP_Dyagilev
 {
     interface IModel
     {
-        List<Stat> GetStats();
+        List<Stat> GetStatsFromDB();
 
         List<Stat> DataList { get; set; }
     }

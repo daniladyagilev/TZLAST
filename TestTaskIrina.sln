@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SP_Dyagilev", "SP_Dyagilev.csproj", "{CED75A3B-76F9-4D12-833F-F8E6002E333A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TzMain", "TzMain.csproj", "{CED75A3B-76F9-4D12-833F-F8E6002E333A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "..\Logic\Logic.csproj", "{D497CDC6-DCFF-49E2-A8D4-772480FF2210}"
 EndProject

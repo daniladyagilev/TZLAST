@@ -22,31 +22,18 @@ namespace SP_Dyagilev
         public Model(IDBModel iDBModel)
         {
             this.iDBModel = iDBModel;
-
-            
-
         }
         public string Analyzer(string[] lines)
         {
             return "";
         }
+
         private object instance;
         private MethodInfo method;
 
-        #region MSSQLDB
-
-        public List<Stat> GetNodes()
+        public List<Stat> GetStatsFromDB()
         {
-            return iDBModel.GetStats();
+            return iDBModel.GetStatsFromDB();
         }
-
-        public List<Stat> GetStats()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        #endregion
-
     }
 }

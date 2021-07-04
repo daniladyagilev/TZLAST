@@ -19,17 +19,11 @@ namespace SP_Dyagilev
 
             
         }
-
-
-        #region DB
         public void OpenDB()
         {
-            view.DataListDB = model.GetStats();
+
+            view.DataListDB = model.GetStatsFromDB();
         }
-
-        #endregion
-
-
 
         public void Analyzer()
         {

@@ -14,21 +14,18 @@ namespace SP_Dyagilev
         public HomePageForm()
         {
             InitializeComponent();
-            analyzerInit();
 
         }
 
-        public List<Node> DataListDB
+        public List<Stat> DataListDB
         {
             set
             {
                 dataGridView1.Rows.Clear();
                 foreach (var el in value)
-                    dataGridView1.Rows.Add(el.Id, el.FileName, el.FileVersion, el.LastChangeDate);
+                    dataGridView1.Rows.Add(el.Id, el.Word, el.Quantity);
             }
         }
-        public string[] AnalyzerCode { get { return richTextBoxCode.Lines; } }
-        public string AnalyzerResult { set { labelResult.Text = value; } }
         public string LogBox
         {
             set
@@ -39,86 +36,50 @@ namespace SP_Dyagilev
             }
         }
 
-        public List DataList
+        public List<Stat> DataList
         {
             get
             {
-                var list = new List();
-                for (int i = 0; i < dataGridViewFiles.Rows.Count; i++)
+                var list = new List<Stat>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    var element = dataGridViewFiles.Rows[i];
-                    list.AddElement(
+                    var element = dataGridView1.Rows[i];
+
+                    Stat entry = new Stat
+                    {
+                        Id = row.Id,
+                        Quantity = row.Quantity,
+                        Word = row.Word
+                    };
+
+                    list.Add(
                         element.Cells[0].Value.ToString(),
                         element.Cells[1].Value.ToString(), 
                         DateTime.Parse(element.Cells[2].Value.ToString()));
                 }
                 return list;
             }
-            set { ShowDateList(value.First, dataGridViewFiles); }
+            set { ShowDateList(value.First, dataGridView1); }
         }
-        private void ShowDateList(Node node, DataGridView dGv)
+
+        public Guid CurrentItemInDB => throw new NotImplementedException();
+
+        private void ShowDateList(Stat node, DataGridView dGv)
         {
             dGv.Rows.Clear();
 
             while (node != null)
             {
-                dGv.Rows.Add(node.FileName, node.FileVersion, node.LastChangeDate);
+                dGv.Rows.Add(node.Id, node.Word, node.Quantity);
 
-                node = node.Next;
             }
         }
-        public string PathFile { set { labelPathFile.Text = "Текущий файл: " + value; } }
 
-        public int A { get { return int.Parse(textBoxA.Text); } }
-        public int B { get { return int.Parse(textBoxB.Text); } }
-
-
-        public string NativeResult { set { labelNativeResult.Text = value.ToString(); } }
-
-        public Guid CurrentItemInDB
-        {
-            get
-            {
-                if (dataGridView1.CurrentCell == null)
-                   throw new Exception("Выберите запись в таблице!");
-                return Guid.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                
-            }
-        }
-        public int CurrentElemXML
-        {
-            get
-            {
-                if (dataGridViewFiles.CurrentCell == null)
-                    throw new Exception("Выберите запись в таблице!");
-                return dataGridViewFiles.CurrentCell.RowIndex;
-            }
-        }
 
         public event Action OpenDB;
         public event Action Analyze;
-        public event Action CreateFile;
-        public event Action OpenFile;
-        public event Action AddElem;
-        public event Action NativeFunction;
-        public event Action AddToDB;
+       
 
-        public event Action EditInDB;
-
-        public event Action RemFromDB;
-
-        public event Action SaveFile;
-
-        public event Action RemFile;
-
-        public event Action EditFile;
-
-        public event Action SaveFileAs;
-
-        public void analyzerInit() {
-            labelTask.Text = "Цикл-перебор\nforeach\r\n(< элемент > in < массив >) {< Тело цикла >}\r\nПосчитать, сколько раз выполнится цикл.";
-            richTextBoxCode.Text = "int[] arr = new int[7];\nforeach(int a in arr)\n{\n    int x = 0;\n    x++;\n}";
-        }
 
 
         #region BUTTONS
@@ -133,64 +94,5 @@ namespace SP_Dyagilev
         }
         #endregion
 
-        private void buttonCreateFile_Click(object sender, EventArgs e)
-        {
-            CreateFile?.Invoke();
-        }
-
-        private void buttonOpenFile_Click(object sender, EventArgs e)
-        {
-            OpenFile?.Invoke();
-        }
-
-        private void buttonAddFile_Click(object sender, EventArgs e)
-        {
-            AddElem?.Invoke();
-        }
-
-        private void buttonNative_Click(object sender, EventArgs e)
-        {
-            NativeFunction?.Invoke();
-        }
-
-        private void buttonAddItemToDB_Click(object sender, EventArgs e)
-        {
-            AddToDB?.Invoke();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            EditInDB?.Invoke();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            RemFromDB?.Invoke();
-        }
-
-        private void buttonSaveFile_Click(object sender, EventArgs e)
-        {
-            SaveFile?.Invoke();
-        }
-
-        private void buttonDeleteFile_Click(object sender, EventArgs e)
-        {
-            RemFile?.Invoke();
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonEditFile_Click(object sender, EventArgs e)
-        {
-            EditFile?.Invoke();
-        }
-
-        private void buttonSaveFileAs_Click(object sender, EventArgs e)
-        {
-            SaveFileAs?.Invoke();
-        }
     }
 }

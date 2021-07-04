@@ -23,7 +23,7 @@ namespace SP_Dyagilev
             HomePageForm f = new HomePageForm();
 
 
-            Presenter p = new Presenter(f, new Model(new File(), new DBModel()));
+            Presenter p = new Presenter(f, new Model(new DBModel()));
             Application.Run(f);
         }
     }

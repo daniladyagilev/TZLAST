@@ -14,38 +14,11 @@ namespace SP_Dyagilev
             this.view = view;
             this.model = model;
             view.OpenDB += OpenDB;
-            view.Analyze += Analyzer;
-
-
-            
         }
         public void OpenDB()
         {
-
             view.DataListDB = model.GetStatsFromDB();
         }
-
-        public void Analyzer()
-        {
-            try
-            {
-                //string res = model.Analyzer(view.AnalyzerCode);
-                //view.AnalyzerResult = res;
-                //view.LogBox = res;
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                view.LogBox = "При выполнении анализа произошла ошибка: входная строка имеет неверный формат.";
-                //view.AnalyzerResult = "Введите корректные данные!";
-            }
-            catch (Exception ex)
-            {
-                view.LogBox = "При выполнении анализа произошла ошибка: " + ex.Message;
-                //view.AnalyzerResult = "[Ошибка]";
-            }
-        }
-
-
 
     }
 }

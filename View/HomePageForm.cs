@@ -26,77 +26,22 @@ namespace SP_Dyagilev
                     dataGridView1.Rows.Add(el.Id, el.Word, el.Quantity);
             }
         }
-        public string LogBox
-        {
-            set
-            {
-                richTextBoxLog.Text += (DateTime.Now + " - " + value + "\r\n");
-                richTextBoxLog.SelectionStart = richTextBoxLog.Text.Length;
-                richTextBoxLog.ScrollToCaret();
-            }
-        }
-        /*
-        public List<Stat> DataList
-        {
-            get
-            {
-                var list = new List<Stat>();
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    var element = dataGridView1.Rows[i];
-
-                    Stat entry = new Stat
-                    {
-                        Id = row.Id,
-                        Quantity = row.Quantity,
-                        Word = row.Word
-                    };
-
-                    list.Add(
-                        element.Cells[0].Value.ToString(),
-                        element.Cells[1].Value.ToString(), 
-                        DateTime.Parse(element.Cells[2].Value.ToString()));
-                }
-                return list;
-            }
-            set { ShowDateList(value.First, dataGridView1); }
-        }
-        */
+      
         public Guid CurrentItemInDB => throw new NotImplementedException();
-
-        public List<Stat> DataList { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        private void ShowDateList(Stat node, DataGridView dGv)
-        {
-            dGv.Rows.Clear();
-
-            while (node != null)
-            {
-                dGv.Rows.Add(node.Id, node.Word, node.Quantity);
-
-            }
-        }
-
-
 
 
         public event Action OpenDB;
+        
+        public event Action GetHTML;
+
         public event Action Analyze;
-        public event Action GetRequest;
 
-
-
-        #region BUTTONS
         private void button1_Click(object sender, EventArgs e)
         {
+            GetHTML?.Invoke();
+            Analyze?.Invoke();
             OpenDB?.Invoke();
         }
-
-        private void buttonAnalyze_Click(object sender, EventArgs e)
-        {
-            Analyze();
-        }
-        #endregion
 
     }
 }

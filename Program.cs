@@ -14,13 +14,10 @@ namespace TzMain
         [STAThread]
         static void Main()
         {
-            
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             HomePageForm f = new HomePageForm();
-
-
             Presenter p = new Presenter(f, new Model(new DBModel()));
             Application.Run(f);
         }

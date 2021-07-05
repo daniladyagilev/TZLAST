@@ -9,6 +9,7 @@ namespace SP_Dyagilev
     {
         List<Stat> GetStatsFromDB();
 
-        List<Stat> DataList { get; set; }
+        //string GET(string url);
+    //    List<Stat> DataList { get; set; }
     }
 }

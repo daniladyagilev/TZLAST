@@ -9,19 +9,11 @@ namespace SP_Dyagilev
     {
         event Action OpenDB;
         public event Action Analyze;
-       
-
 
         List<Stat> DataListDB { set; }
-
-        List<Stat> DataList { get; set; }
-        
-
-        string LogBox { set; }
-
-
         Guid CurrentItemInDB { get; }
 
+        //List<Stat> GetStatsFromDB { get; }
 
     }
 }
